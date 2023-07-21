@@ -76,7 +76,7 @@ public class TokenService
 
         var postResponse = await _httpClient.PostAsync(loginUrl, authnPayload);
         // HttpClient by default follows redirects, but in this example
-        // it's redirected from https to http (our localhost SPA) and in that case redirects are not followed
+        // it's redirected from HTTPS to HTTP (our localhost SPA) and in that case redirects are not followed
         if (postResponse.StatusCode != HttpStatusCode.Redirect)
         {
             throw new Exception("Unable to get redirect url: response status code was not a 302.");
@@ -122,7 +122,7 @@ public class TokenService
     private static string Base64UrlEncode(string input) => input
         .Replace('+', '-')
         .Replace('/', '_')
-        .Replace("=", string.Empty);
+        .Replace("=", "");
 
     private static string ExtractCodeFromUriQueryParameter(Uri? location)
     {
